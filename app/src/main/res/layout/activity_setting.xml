@@ -1,9 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.khaerulumam.khaerulumam_1202154148_studycase5.SettingActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    <ScrollView
+
+        android:layout_width="match_parent"
+
+        android:layout_height="match_parent"
+
+        android:id="@+id/scrollview">
+
+
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="10dp"
+
+            android:layout_marginRight="10dp"
+
+            android:onClick="bukadialog"
+
+            android:orientation="vertical"
+            android:layout_marginTop="20dp">
+
+
+
+
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+
+                android:layout_height="60dp"
+
+                android:id="@+id/llselectalarm"
+
+                android:gravity="center_vertical"
+
+                android:orientation="vertical"
+
+                android:background="@drawable/click_background">
+
+                <TextView
+                    android:id="@+id/ubahcolor"
+
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+
+                    android:layout_weight="1"
+
+                    android:layout_marginLeft="7dp"
+
+                    android:text="Shape Color"
+
+                    android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+                <TextView
+                    android:id="@+id/color"
+
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+
+                    android:layout_weight="1"
+
+                    android:layout_marginLeft="7dp"
+
+                    android:text="Color"
+
+                    android:textAppearance="?android:attr/textAppearanceSmall"/>
+
+            </LinearLayout>
+            <View
+
+                android:layout_width="match_parent"
+
+                android:layout_height="1dp"
+
+                android:background="@color/colorSettings" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>
+

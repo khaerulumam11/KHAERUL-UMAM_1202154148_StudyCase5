@@ -1,29 +1,24 @@
 package com.example.khaerulumam.khaerulumam_1202154148_studycase5;
 
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.AdapterView;
-import android.widget.ListView;
+import android.view.View;
 
-import com.example.khaerulumam.khaerulumam_1202154148_studycase5.adapter.Adapter;
 import com.example.khaerulumam.khaerulumam_1202154148_studycase5.adapter.TodoAdapter;
 import com.example.khaerulumam.khaerulumam_1202154148_studycase5.database.DataHelper;
-import com.example.khaerulumam.khaerulumam_1202154148_studycase5.database.DataHelper2;
 import com.example.khaerulumam.khaerulumam_1202154148_studycase5.model.Data;
 import com.example.khaerulumam.khaerulumam_1202154148_studycase5.utils.SwipeUtilDelete;
 
@@ -54,6 +49,14 @@ public class MainActivity extends AppCompatActivity {
     public static final String TAG_ADDRESS = "deskripsi";
     public static final String TAG_JUMLAH = "jumlah";
 
+    SharedPreferences.Editor editor;
+
+    SharedPreferences app_preferences;
+
+
+    // Name of shared preferences file
+    private static final String mSharedPrefFile = "com.example.android.hellosharedprefs";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,14 +72,33 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView                = (RecyclerView) findViewById(R.id.list_view);
         userList                    = new ArrayList<>();
-        userAdapter                 = new TodoAdapter(userList);
+
 
         mLayoutManager              = new LinearLayoutManager(this);
 
+
+
+        //Retreive SharedPreference
+
+        SharedPreferences pref = this.getApplicationContext().getSharedPreferences("pref", 0);
+
+        int warna = pref.getInt("background", R.color.default_background);
+
+        userAdapter                 = new TodoAdapter(this,userList,warna);
         recyclerView.setLayoutManager(mLayoutManager);
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(userAdapter);
+
+//        app_preferences = getSharedPreferences(mSharedPrefFile,MODE_PRIVATE);
+//        int mColor = ContextCompat.getColor(this, R.color.default_background);
+//        int warna = app_preferences.getInt("color",0);
+//        int ubah = warna;
+//
+//        if (ubah == 0){
+//            recyclerView.setBackgroundColor(warna);
+//        }
+
 
 
 
@@ -214,7 +236,8 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+           Intent h = new Intent(MainActivity.this,SettingActivity.class);
+           startActivity(h);
         }
 
         return super.onOptionsItemSelected(item);

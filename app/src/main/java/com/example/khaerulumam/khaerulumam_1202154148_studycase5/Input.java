@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,7 +12,6 @@ import android.widget.Toast;
 
 import com.example.khaerulumam.khaerulumam_1202154148_studycase5.adapter.TodoAdapter;
 import com.example.khaerulumam.khaerulumam_1202154148_studycase5.database.DataHelper;
-import com.example.khaerulumam.khaerulumam_1202154148_studycase5.database.DataHelper2;
 import com.example.khaerulumam.khaerulumam_1202154148_studycase5.model.Data;
 
 import java.util.ArrayList;
@@ -40,8 +40,13 @@ public class Input extends AppCompatActivity {
 
         tulis       = sqlite.getWritableDatabase();
 
-        userList                    = new ArrayList<>();
-        userAdapter                 = new TodoAdapter(userList);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("To Do Input");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+//        userList                    = new ArrayList<>();
+//        userAdapter                 = new TodoAdapter(this,userList);
 
 
         d = (Button) findViewById(R.id.add);
